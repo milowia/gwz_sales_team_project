@@ -1,9 +1,10 @@
+WITH AS
 SELECT 
   date_date, 
   ROUND(SUM(turnover)) AS daily_turnover,
-  ROUND(SUM(purchase_price*qty)) AS daily_purchase_cost
+  ROUND(SUM(turnover_before_promo - turnover)) AS daily_discount
 FROM `learned-raceway-436207-f6.course12.gwz_sales`
-INNER JOIN `course12.gwz_product`
+INNER JOIN `course17.green_product`
 USING (products_id)
 GROUP BY date_date
 ORDER BY date_date DESC
